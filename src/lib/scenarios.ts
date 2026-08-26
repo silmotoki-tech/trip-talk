@@ -22,6 +22,35 @@ const hotelScenes: Scene[] = [
 ];
 
 const airportScenes: Scene[] = [
+  { id:"immigration", title:"入国審査", icon:"🛂", start:"入国審査カウンターで係官に Passport, please. と言われるところ", goal:"渡航目的・滞在期間・滞在先を落ち着いて答える", stages:["パスポートを提示する","渡航目的と滞在期間を答える","滞在先と帰国予定を伝える"], story:[
+    {role:"staff",english:"Good afternoon. Passport, please.",japanese:"こんにちは。パスポートをお願いします。"},
+    {role:"learner",english:"Sure. Here you are.",japanese:"はい、どうぞ。"},
+    {role:"staff",english:"What is the purpose of your visit?",japanese:"渡航目的は何ですか。"},
+    {role:"learner",english:"I'm here for sightseeing.",japanese:"観光で来ました。"},
+    {role:"staff",english:"How long will you be staying?",japanese:"どのくらい滞在しますか。"},
+    {role:"learner",english:"I'll be staying for seven days.",japanese:"7日間滞在します。"},
+    {role:"staff",english:"Where will you be staying?",japanese:"どこに滞在しますか。"},
+    {role:"learner",english:"At the Central Hotel in the city center.",japanese:"市内中心部のセントラルホテルです。"},
+    {role:"staff",english:"Do you have a return ticket?",japanese:"帰りの航空券はありますか。"},
+    {role:"learner",english:"Yes. My return flight is next Friday.",japanese:"はい。帰りの便は次の金曜日です。"},
+    {role:"staff",english:"All right. Please look at the camera. Welcome and enjoy your stay.",japanese:"分かりました。カメラを見てください。ようこそ。滞在をお楽しみください。"},
+    {role:"learner",english:"Got it. Thank you.",japanese:"分かりました。ありがとうございます。"}
+  ], preview:[
+    {english:"I'm here for sightseeing.",japanese:"観光で来ました"},
+    {english:"I'll be staying for seven days.",japanese:"7日間滞在します"},
+    {english:"I'm staying at the Central Hotel.",japanese:"セントラルホテルに滞在します"},
+    {english:"My return flight is next Friday.",japanese:"帰りの便は次の金曜日です"},
+    {english:"I'm visiting friends.",japanese:"友人を訪ねに来ました"},
+    {english:"Could you repeat that, please?",japanese:"もう一度言ってもらえますか"}
+  ], reactions:basic, vocabulary:[
+    {term:"immigration",japanese:"入国審査",example:"Go through immigration."},
+    {term:"purpose of your visit",japanese:"渡航目的",example:"What is the purpose of your visit?"},
+    {term:"sightseeing",japanese:"観光",example:"I'm here for sightseeing."},
+    {term:"stay",japanese:"滞在する",example:"How long will you stay?"},
+    {term:"accommodation",japanese:"宿泊先",example:"What is your accommodation?"},
+    {term:"return ticket",japanese:"帰りの航空券",example:"I have a return ticket."},
+    {term:"return flight",japanese:"帰りの便",example:"My return flight is on Friday."}
+  ] },
   { id:"exchange", title:"空港の両替所", icon:"💱", start:"両替カウンターでスタッフが How can I help you? と尋ねるところ", goal:"金額・レート・手数料を確認して両替する", stages:["両替を頼む","レートと手数料を聞く","受取額を確認する"], story:[
     {role:"staff",english:"Hello. How can I help you?",japanese:"こんにちは。ご用件をどうぞ。"},{role:"learner",english:"I'd like to exchange 30,000 yen into dollars.",japanese:"3万円をドルに両替したいです。"},{role:"staff",english:"Today's rate is shown on the screen.",japanese:"本日のレートは画面に表示されています。"},{role:"learner",english:"I see. Is there a commission?",japanese:"なるほど。手数料はありますか。"},{role:"staff",english:"Yes, there is a five-dollar service fee.",japanese:"5ドルの手数料があります。"},{role:"learner",english:"Sorry? How much will I receive?",japanese:"すみません。受取額はいくらですか。"},{role:"staff",english:"You'll receive 185 dollars. May I see your passport?",japanese:"185ドルです。パスポートを拝見できますか。"},{role:"learner",english:"That sounds good. Here you are.",japanese:"それでお願いします。はい、どうぞ。"}], preview:[{english:"I'd like to exchange 30,000 yen.",japanese:"3万円を両替したいです"},{english:"What's today's exchange rate?",japanese:"今日の為替レートはいくらですか"},{english:"Is there a commission?",japanese:"手数料はありますか"},{english:"How much will I receive?",japanese:"受取額はいくらですか"}], reactions:basic, vocabulary:[{term:"exchange rate",japanese:"為替レート",example:"What's the exchange rate?"},{term:"commission",japanese:"手数料",example:"Is there a commission?"},{term:"receive",japanese:"受け取る",example:"How much will I receive?"}] },
   { id:"sim-shop", title:"SIM販売店", icon:"📱", start:"SIM販売カウンターで Are you looking for a SIM card? と声をかけられるところ", goal:"滞在日数と用途を伝え、プランを選ぶ", stages:["SIMを探していると伝える","用途を説明する","プランと料金を確認する"], story:[
