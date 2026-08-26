@@ -39,7 +39,7 @@ const hotelScenes: Scene[] = [
     {term:"Where are you from?",japanese:"どちらのご出身ですか",example:"Where are you from?"},
     {term:"around here",japanese:"この辺り",example:"Are you from around here?"},
     {term:"grew up",japanese:"育った",example:"I grew up nearby."},
-    {term:"How long have you worked ...?",japanese:"どのくらい働いていますか",example:"How long have you worked at this hotel?"},
+    {term:"How long have you worked",japanese:"どのくらい働いていますか",example:"How long have you worked at this hotel?"},
     {term:"so far",japanese:"これまでのところ",example:"Where have you visited so far?"},
     {term:"See you around",japanese:"またどこかで・また会いましょう",example:"See you around!"}
   ] },
@@ -248,6 +248,25 @@ for (const scene of [...hotelScenes, ...airportScenes]) {
     scene.vocabulary.push(...extension.vocabulary);
   }
 }
+
+function enforceVocabularyInDialogue(scenes: Scene[]) {
+  for (const scene of scenes) {
+    const dialogue = scene.story.map((turn) => turn.english.toLowerCase()).join(" ");
+    const unused = scene.vocabulary
+      .map((item) => item.term)
+      .filter((term) => !dialogue.includes(term.toLowerCase()));
+
+    if (unused.length > 0) {
+      throw new Error(
+        `Scene "${scene.title}" has vocabulary missing from its dialogue: ${unused.join(", ")}`,
+      );
+    }
+  }
+}
+
+// Every WORDS & PHRASES item must be encountered in the example dialogue.
+// This intentionally fails development and production builds when a new scene breaks the rule.
+enforceVocabularyInDialogue([...hotelScenes, ...airportScenes]);
 
 export const SCENARIOS: Record<string, Scenario> = {
   hotel: { id:"hotel", title:"ホテル", place:"ホテル内", scenes:hotelScenes },
