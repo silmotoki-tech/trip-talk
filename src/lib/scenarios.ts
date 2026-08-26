@@ -1,4 +1,4 @@
-import { PreviewItem, Scene, Scenario, StoryTurn, UserProfile, VocabularyItem } from "./types";
+import { PracticeMode, PreviewItem, Scene, Scenario, StoryTurn, UserProfile, VocabularyItem } from "./types";
 
 export const USERS: UserProfile[] = [
   { id: "tamoyan", name: "タモやん", conversationName: "Motoki", emoji: "🧳", scenarioId: "hotel", difficulty: { speed: 3, reductions: 2, listening: 3 } },
@@ -240,9 +240,26 @@ export function realtimeSpeechSpeed(level: number) {
   return speeds[Math.max(1, Math.min(10, Math.round(level))) - 1];
 }
 
-export function chatGptInstructions(user: UserProfile, scenario: Scenario, scene: Scene) {
+export function projectInstructions(user: UserProfile) {
+  return `あなたは${user.conversationName}の旅行英会話の相手です。
+
+Trip Talkから渡される場面、例文、難易度、練習モードに従い、現実のスタッフとして短い一言ずつ会話してください。英語中心で、日本語は本人が困ったときだけ短く使います。英語と日本語以外は使いません。日本語回答、「わからない」、パスを認め、重大で会話が通じない間違いだけ短く直してください。先生のような説明や過度な称賛、進級判定はしません。
+
+「例文どおり」は相手役のセリフと順番を例文に沿わせ、本人に一字一句同じ回答は強制しません。「変化あり」は場面と範囲を変えず、質問の言い方や順番だけを少し変え、難しい話題へ広げません。
+
+指示書を受け取った直後は「準備できました」とだけ答え、Voice開始後または本人が「Start」と言ったら始めてください。同じチャットでは同じ場面を毎回最初から練習し、前回の課題を自然に再登場させます。
+
+本人が「練習終了」と言ったら、日本語で「第○周（練習モード）」「総評：2〜3文」「次回の課題：1文」だけを出してください。例文どおりでは重要表現を使えたか、変化ありでは異なる聞き方を理解して目的を伝えられたかを見ます。例文と違う表現を使っただけで誤りにしません。細かな採点や発音評価はしません。`;
+}
+
+export function chatGptInstructions(user: UserProfile, scenario: Scenario, scene: Scene, mode: PracticeMode) {
   const d = user.difficulty;
   const pace = d.speed <= 2 ? "英語はかなりゆっくり、短い一文ずつ、文の間を十分に空けて話してください。" : d.speed <= 4 ? "英語はゆっくり、短い文と明瞭な間で話してください。" : d.speed <= 6 ? "英語は落ち着いた自然な速さで話してください。" : "英語は自然な会話速度で話してください。";
   const example = scene.story.map((line) => `${line.role === "staff" ? "Staff" : user.conversationName}: ${line.english}`).join("\n");
-  return `これから旅行英会話のロールプレイをします。あなたは${scenario.title}の「${scene.title}」にいる現地スタッフ、私は${user.conversationName}です。\n\n【開始】${scene.start}。毎回ここから新しい会話として始め、前回の続きにはしないでください。\n【目的】${scene.goal}\n【流れの目安】${scene.stages.join(" → ")}\n【話し方】${pace} リンキング・省略の強さは10段階中${d.reductions}、聞き取り難度は10段階中${d.listening}を目安にしてください。\n\n【予習した会話例】\n${example}\n\nこの会話例を参考に、同じ場面・目的・おおまかな流れで会話してください。ただし、これは暗唱用の台本ではありません。例文をそのまま順番に読ませたり、私に同じ返答を要求したりせず、私の返答に合わせて質問、情報、言い回しを自然に変えてください。予習した表現を使える機会は作ってください。\n\n【会話ルール】現実のスタッフとして自然に振る舞い、先生のような説明や過度な称賛はしないでください。一度に短く話し、私の返答を待ってください。英語と日本語以外は使わないでください。重大で会話が通じない間違いだけ、ごく短く直して会話を続けてください。日本語、「わからない」、「パス」も受け付け、その場合は自然な短い英語を一つ示して続けてください。${scene.reactions.map((item) => item.english).join(" / ")} を自然に使える機会も作ってください。\n\n準備ができたら、解説せずスタッフの最初のひと言から始めてください。会話終了後に私が「振り返って」と言ったら、良かった点、改善点、今回必要だったが使えなかった表現、次回使う表現を日本語で整理してください。進級や習得済みの判定はしないでください。`;
+  const modeInstruction = mode === "scripted"
+    ? "相手役のセリフと会話の順番を例文に沿って進めてください。私には一字一句同じ回答を強制せず、意味が通じれば続けてください。"
+    : "場面と練習範囲は変えず、質問の言い方や順番だけを少し変えてください。例文にない難しい話題へ広げないでください。";
+  const reviewCriterion = mode === "scripted" ? "重要表現を使えたか" : "異なる聞き方を理解し、目的を自分の言葉で伝えられたか";
+  const modeLabel = mode === "scripted" ? "例文どおり" : "変化あり";
+  return `これから旅行英会話のロールプレイをします。あなたは${scenario.title}の「${scene.title}」にいる現地スタッフ、私は${user.conversationName}です。\n\n【開始】${scene.start}。毎回ここから新しい会話として始め、前回の続きにはしないでください。\n【目的】${scene.goal}\n【流れの目安】${scene.stages.join(" → ")}\n【練習モード】${modeLabel}。${modeInstruction}\n【話し方】${pace} リンキング・省略の強さは10段階中${d.reductions}、聞き取り難度は10段階中${d.listening}を目安にしてください。\n\n【予習した会話例】\n${example}\n\n【会話ルール】現実のスタッフとして自然に振る舞い、一度に短く話して私の返答を待ってください。先生のような説明や過度な称賛は不要です。英語と日本語以外は使わないでください。重大で会話が通じない間違いだけ短く直してください。日本語、「わからない」、「パス」も受け付け、自然な短い英語を一つ示して続けてください。${scene.reactions.map((item) => item.english).join(" / ")} を使える機会も作ってください。\n\nまず「準備できました」とだけ答えてください。Voice開始後または私が「Start」と言ったら、スタッフの最初の一言から始めてください。私が「練習終了」と言ったら会話を止め、このチャット内の周回数を数えて、日本語で「第○周（${modeLabel}）」「総評：2〜3文」「次回の課題：1文」だけを出してください。総評では${reviewCriterion}を見てください。例文と違う表現を使っただけで誤りにせず、細かな採点、長い解説、発音評価、進級判定はしないでください。`;
 }

@@ -1,4 +1,5 @@
 export type UserId = "tamoyan" | "gonzaemon";
+export type PracticeMode = "scripted" | "variation";
 export type PathChoice = "repeat" | "expand" | "change";
 export type Phase = "home" | "preview" | "live" | "review";
 

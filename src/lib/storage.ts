@@ -1,4 +1,4 @@
-import { Difficulty, SessionRecord, UserId } from "./types";
+import { Difficulty, PracticeMode, SessionRecord, UserId } from "./types";
 
 const key = (userId: UserId, suffix: string) => `english-mvp:${userId}:${suffix}`;
 
@@ -10,6 +10,13 @@ export const storage = {
   },
   saveDifficulty(userId: UserId, value: Difficulty) {
     localStorage.setItem(key(userId, "difficulty"), JSON.stringify(value));
+  },
+  loadPracticeMode(userId: UserId): PracticeMode {
+    if (typeof window === "undefined") return "scripted";
+    return localStorage.getItem(key(userId, "practice-mode")) === "variation" ? "variation" : "scripted";
+  },
+  savePracticeMode(userId: UserId, value: PracticeMode) {
+    localStorage.setItem(key(userId, "practice-mode"), value);
   },
   saveSession(session: SessionRecord) {
     localStorage.setItem(key(session.userId, "latest-session"), JSON.stringify(session));
