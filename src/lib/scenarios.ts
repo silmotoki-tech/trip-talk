@@ -36,10 +36,10 @@ const hotelScenes: Scene[] = [
     {english:"It was nice talking with you.",japanese:"お話しできてよかったです"},
     {english:"See you around!",japanese:"また会いましょう"}
   ], reactions:[{english:"Oh, really?",japanese:"そうなんですか"},{english:"I'm glad to hear that.",japanese:"それはよかったです"},{english:"That sounds nice.",japanese:"いいですね"}], vocabulary:[
-    {term:"be from",japanese:"〜の出身である",example:"Where are you from?"},
+    {term:"Where are you from?",japanese:"どちらのご出身ですか",example:"Where are you from?"},
     {term:"around here",japanese:"この辺り",example:"Are you from around here?"},
-    {term:"grow up",japanese:"育つ",example:"I grew up nearby."},
-    {term:"How long have you ...?",japanese:"どのくらい〜していますか",example:"How long have you worked here?"},
+    {term:"grew up",japanese:"育った",example:"I grew up nearby."},
+    {term:"How long have you worked ...?",japanese:"どのくらい働いていますか",example:"How long have you worked at this hotel?"},
     {term:"so far",japanese:"これまでのところ",example:"Where have you visited so far?"},
     {term:"See you around",japanese:"またどこかで・また会いましょう",example:"See you around!"}
   ] },
@@ -51,13 +51,13 @@ const hotelScenes: Scene[] = [
 
 const airportScenes: Scene[] = [
   { id:"immigration", title:"入国審査", icon:"🛂", start:"入国審査カウンターで係官に Passport, please. と言われるところ", goal:"渡航目的・滞在期間・滞在先を落ち着いて答える", stages:["パスポートを提示する","渡航目的と滞在期間を答える","滞在先と帰国予定を伝える"], story:[
-    {role:"staff",english:"Good afternoon. Passport, please.",japanese:"こんにちは。パスポートをお願いします。"},
+    {role:"staff",english:"Good afternoon. Welcome to immigration. Passport, please.",japanese:"こんにちは。入国審査へようこそ。パスポートをお願いします。"},
     {role:"learner",english:"Sure. Here you are.",japanese:"はい、どうぞ。"},
     {role:"staff",english:"What is the purpose of your visit?",japanese:"渡航目的は何ですか。"},
     {role:"learner",english:"I'm here for sightseeing.",japanese:"観光で来ました。"},
     {role:"staff",english:"How long will you be staying?",japanese:"どのくらい滞在しますか。"},
     {role:"learner",english:"I'll be staying for seven days.",japanese:"7日間滞在します。"},
-    {role:"staff",english:"Where will you be staying?",japanese:"どこに滞在しますか。"},
+    {role:"staff",english:"What is your accommodation? Where will you be staying?",japanese:"宿泊先はどこですか。どちらに滞在しますか。"},
     {role:"learner",english:"At the Central Hotel in the city center.",japanese:"市内中心部のセントラルホテルです。"},
     {role:"staff",english:"Do you have a return ticket?",japanese:"帰りの航空券はありますか。"},
     {role:"learner",english:"Yes. My return flight is next Friday.",japanese:"はい。帰りの便は次の金曜日です。"},
@@ -84,15 +84,15 @@ const airportScenes: Scene[] = [
     {role:"learner",english:"I'm going to the Sheraton Nha Trang Hotel on Tran Phu Street.",japanese:"チャンフー通りのシェラトン・ニャチャン・ホテルへ行きます。"},
     {role:"staff",english:"You can take the airport bus to central Nha Trang.",japanese:"ニャチャン中心部行きの空港バスを利用できます。"},
     {role:"learner",english:"I see. Does it stop near the Sheraton?",japanese:"なるほど。シェラトンの近くに停まりますか。"},
-    {role:"staff",english:"Tell the driver your hotel. The driver will show you the best stop.",japanese:"運転手にホテル名を伝えてください。最寄りの停留所を教えてくれます。"},
+    {role:"staff",english:"Tell the driver your hotel. The driver will show you the best bus stop.",japanese:"運転手にホテル名を伝えてください。最寄りのバス停を教えてくれます。"},
     {role:"learner",english:"Got it. Which bus should I take?",japanese:"分かりました。どのバスに乗ればよいですか。"},
     {role:"staff",english:"Take the bus marked Nha Trang City. It leaves from platform three.",japanese:"「Nha Trang City」と表示されたバスです。3番乗り場から出ます。"},
     {role:"learner",english:"Sorry, did you say platform three?",japanese:"すみません、3番乗り場と言いましたか。"},
     {role:"staff",english:"Yes, that's right. The next bus leaves in fifteen minutes.",japanese:"はい、そのとおりです。次のバスは15分後に出ます。"},
     {role:"learner",english:"Great. How much is the fare, and can I pay by card?",japanese:"よかった。料金はいくらで、カードで払えますか。"},
     {role:"staff",english:"Please buy your ticket at that counter. They accept cash and cards.",japanese:"あちらの窓口で切符を購入してください。現金とカードが使えます。"},
-    {role:"learner",english:"Thanks. Can I put my suitcase under the bus?",japanese:"ありがとう。スーツケースをバスの下に預けられますか。"},
-    {role:"staff",english:"Yes. The driver will help you with your luggage.",japanese:"はい。運転手が荷物を載せるのを手伝います。"},
+    {role:"learner",english:"Thanks. Can I put my suitcase in the luggage compartment?",japanese:"ありがとう。スーツケースを荷物室に入れられますか。"},
+    {role:"staff",english:"Yes. The driver will help you. Ask the driver where to get off.",japanese:"はい。運転手がお手伝いします。どこで降りるか運転手に聞いてください。"},
     {role:"learner",english:"How long does it usually take to get to the city center?",japanese:"市内中心部まで通常どのくらいかかりますか。"},
     {role:"staff",english:"It depends on traffic, so please confirm the current travel time at the counter.",japanese:"交通状況によるため、現在の所要時間は窓口で確認してください。"},
     {role:"learner",english:"All right. I appreciate your help.",japanese:"分かりました。助かりました。"}
@@ -127,10 +127,10 @@ type SceneExtension = { story: StoryTurn[]; preview: PreviewItem[]; vocabulary: 
 
 const sceneExtensions: Record<string, SceneExtension> = {
   checkin: { story:[
-    {role:"staff",english:"Before you go, we require a credit card for the security deposit.",japanese:"最後に、保証金のためクレジットカードをお預かりします。"},
+    {role:"staff",english:"Before you go, may I see your booking confirmation? We also require a credit card for the security deposit.",japanese:"最後に予約確認書を拝見できますか。また、保証金のためクレジットカードをお預かりします。"},
     {role:"learner",english:"I see. What is the deposit for?",japanese:"なるほど。保証金は何のためですか。"},
     {role:"staff",english:"It covers additional expenses such as room service or minibar charges.",japanese:"ルームサービスやミニバーなどの追加料金に備えるものです。"},
-    {role:"learner",english:"Got it. Will the hold be released after checkout?",japanese:"分かりました。チェックアウト後に仮押さえは解除されますか。"},
+    {role:"learner",english:"Got it. When will you release the hold after checkout?",japanese:"分かりました。チェックアウト後、いつ仮押さえを解除しますか。"},
     {role:"staff",english:"Yes. It usually takes a few business days.",japanese:"はい。通常は数営業日かかります。"},
     {role:"learner",english:"That sounds fine. What time is checkout?",japanese:"それなら大丈夫です。チェックアウトは何時ですか。"},
     {role:"staff",english:"Checkout is by eleven. The elevators are around the corner on your right.",japanese:"11時までです。エレベーターは右手の角を曲がったところです。"},
@@ -152,7 +152,7 @@ const sceneExtensions: Record<string, SceneExtension> = {
   ], preview:[
     {english:"Is this included in the buffet?",japanese:"これはビュッフェに含まれていますか"},{english:"Could I have some milk on the side?",japanese:"ミルクを別添えでもらえますか"},{english:"I have a food allergy.",japanese:"食物アレルギーがあります"},{english:"Does this contain nuts?",japanese:"これにナッツは含まれていますか"},
   ], vocabulary:[
-    {term:"specialty coffee",japanese:"特別な種類のコーヒー",example:"Specialty coffee costs extra."},{term:"cost extra",japanese:"追加料金がかかる",example:"This costs extra."},{term:"on the side",japanese:"別添えで",example:"Could I have it on the side?"},{term:"food allergy",japanese:"食物アレルギー",example:"I have a food allergy."},{term:"contain",japanese:"含む",example:"Does this contain nuts?"},
+    {term:"specialty coffee",japanese:"特別な種類のコーヒー",example:"Specialty coffee costs extra."},{term:"costs extra",japanese:"追加料金がかかる",example:"Specialty coffee costs extra."},{term:"on the side",japanese:"別添えで",example:"Could I have it on the side?"},{term:"food allergies",japanese:"食物アレルギー",example:"Do you have any food allergies?"},{term:"contain",japanese:"含む",example:"Does this contain nuts?"},
   ]},
   hallway: { story:[
     {role:"staff",english:"Is there anything else I can help you find?",japanese:"ほかにお探しの場所はありますか。"},
@@ -180,13 +180,13 @@ const sceneExtensions: Record<string, SceneExtension> = {
   ], preview:[
     {english:"No cold air is coming out.",japanese:"冷たい風が出ません"},{english:"How long will the repair take?",japanese:"修理にはどのくらいかかりますか"},{english:"Could I move to another room?",japanese:"別の部屋へ移れますか"},{english:"Could you call me back?",japanese:"折り返し電話をもらえますか"},
   ], vocabulary:[
-    {term:"control panel",japanese:"操作パネル",example:"Check the control panel."},{term:"maintenance",japanese:"保守・点検",example:"It needs maintenance."},{term:"repair",japanese:"修理",example:"How long will the repair take?"},{term:"availability",japanese:"空き状況",example:"I'll check availability."},{term:"call back",japanese:"折り返し電話する",example:"We'll call you back."},
+    {term:"control panel",japanese:"操作パネル",example:"Check the control panel."},{term:"maintenance",japanese:"保守・点検",example:"It needs maintenance."},{term:"repair",japanese:"修理",example:"How long will the repair take?"},{term:"availability",japanese:"空き状況",example:"I'll check availability."},{term:"call you back",japanese:"折り返し電話する",example:"We'll call you back."},
   ]},
   checkout: { story:[
-    {role:"staff",english:"Would you like us to email the receipt as well?",japanese:"領収書をメールでもお送りしましょうか。"},
+    {role:"staff",english:"Here is your itemized bill. There is no outstanding balance. Would you like us to email the receipt as well?",japanese:"こちらが明細付き請求書です。未払い残高はありません。領収書をメールでもお送りしましょうか。"},
     {role:"learner",english:"Yes, please. Could you send it to the address on my booking?",japanese:"お願いします。予約時のアドレスへ送ってもらえますか。"},
-    {role:"staff",english:"Certainly. Your deposit hold will be released automatically.",japanese:"承知しました。保証金の仮押さえは自動的に解除されます。"},
-    {role:"learner",english:"Got it. How long does that usually take?",japanese:"分かりました。通常どのくらいかかりますか。"},
+    {role:"staff",english:"Certainly. Your deposit hold will be released automatically. If there is a refund, it will also be processed automatically.",japanese:"承知しました。保証金の仮押さえは自動的に解除されます。返金がある場合も自動的に処理されます。"},
+    {role:"learner",english:"Got it. How long will the refund take?",japanese:"分かりました。返金にはどのくらいかかりますか。"},
     {role:"staff",english:"It depends on your bank, but usually three to five business days.",japanese:"銀行によりますが、通常3〜5営業日です。"},
     {role:"learner",english:"I see. Could you also arrange a taxi to the airport?",japanese:"なるほど。空港までのタクシーも手配できますか。"},
     {role:"staff",english:"Of course. It should arrive in about ten minutes.",japanese:"もちろんです。10分ほどで到着します。"},
@@ -218,7 +218,7 @@ const sceneExtensions: Record<string, SceneExtension> = {
     {role:"staff",english:"Your regular number stays active, but this plan is data-only.",japanese:"元の番号はそのままですが、このプランはデータ通信専用です。"},
     {role:"learner",english:"Got it. Can I add more data if I run out?",japanese:"分かりました。使い切ったらデータを追加できますか。"},
     {role:"staff",english:"Yes. You can top up online at any time.",japanese:"はい。いつでもオンラインで追加購入できます。"},
-    {role:"learner",english:"That sounds good. I'll take the eSIM plan.",japanese:"よさそうです。eSIMプランにします。"},
+    {role:"learner",english:"That sounds good. I'll take this eSIM data plan.",japanese:"よさそうです。このeSIMデータ通信プランにします。"},
   ], preview:[
     {english:"Does my phone support eSIM?",japanese:"私の携帯はeSIMに対応していますか"},{english:"Is this plan data-only?",japanese:"このプランはデータ通信専用ですか"},{english:"Can I keep my phone number?",japanese:"電話番号をそのまま使えますか"},{english:"Can I top up online?",japanese:"オンラインで追加購入できますか"},
   ], vocabulary:[
@@ -231,7 +231,7 @@ const sceneExtensions: Record<string, SceneExtension> = {
     {role:"learner",english:"I see. Should data roaming be turned on?",japanese:"なるほど。データローミングはオンにする必要がありますか。"},
     {role:"staff",english:"Yes, for this SIM it needs to be on. You will not be charged extra.",japanese:"はい、このSIMではオンが必要です。追加料金はかかりません。"},
     {role:"learner",english:"Got it. Could you test the connection again?",japanese:"分かりました。もう一度接続を確認してもらえますか。"},
-    {role:"staff",english:"It's working now. Please keep this setup guide in case you need it later.",japanese:"接続できました。後で必要な場合に備えて設定ガイドを保管してください。"},
+    {role:"staff",english:"It's working now. Please keep this setup guide in case you need to set up the SIM again.",japanese:"接続できました。SIMを再設定する場合に備えて、この設定ガイドを保管してください。"},
     {role:"learner",english:"Great, thank you. I appreciate your help.",japanese:"よかった、ありがとうございます。助かりました。"},
   ], preview:[
     {english:"Mobile data isn't working.",japanese:"モバイルデータが使えません"},{english:"Should data roaming be on?",japanese:"データローミングはオンにすべきですか"},{english:"Could you test the connection?",japanese:"接続を確認してもらえますか"},{english:"Will I be charged extra?",japanese:"追加料金はかかりますか"},
