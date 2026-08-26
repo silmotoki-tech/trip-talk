@@ -51,6 +51,42 @@ const airportScenes: Scene[] = [
     {term:"return ticket",japanese:"帰りの航空券",example:"I have a return ticket."},
     {term:"return flight",japanese:"帰りの便",example:"My return flight is on Friday."}
   ] },
+  { id:"airport-bus", title:"空港バスでホテルへ", icon:"🚌", start:"カムラン国際空港のバス案内所で係員に Where are you going? と尋ねられるところ", goal:"シェラトン・ニャチャンまでのバス、降車場所、料金を確認して乗車する", stages:["行き先を伝える","バスと降車場所を確認する","料金・荷物・所要時間を尋ねる"], story:[
+    {role:"staff",english:"Hello. Where are you going?",japanese:"こんにちは。どちらまで行きますか。"},
+    {role:"learner",english:"I'm going to the Sheraton Nha Trang Hotel on Tran Phu Street.",japanese:"チャンフー通りのシェラトン・ニャチャン・ホテルへ行きます。"},
+    {role:"staff",english:"You can take the airport bus to central Nha Trang.",japanese:"ニャチャン中心部行きの空港バスを利用できます。"},
+    {role:"learner",english:"I see. Does it stop near the Sheraton?",japanese:"なるほど。シェラトンの近くに停まりますか。"},
+    {role:"staff",english:"Tell the driver your hotel. The driver will show you the best stop.",japanese:"運転手にホテル名を伝えてください。最寄りの停留所を教えてくれます。"},
+    {role:"learner",english:"Got it. Which bus should I take?",japanese:"分かりました。どのバスに乗ればよいですか。"},
+    {role:"staff",english:"Take the bus marked Nha Trang City. It leaves from platform three.",japanese:"「Nha Trang City」と表示されたバスです。3番乗り場から出ます。"},
+    {role:"learner",english:"Sorry, did you say platform three?",japanese:"すみません、3番乗り場と言いましたか。"},
+    {role:"staff",english:"Yes, that's right. The next bus leaves in fifteen minutes.",japanese:"はい、そのとおりです。次のバスは15分後に出ます。"},
+    {role:"learner",english:"Great. How much is the fare, and can I pay by card?",japanese:"よかった。料金はいくらで、カードで払えますか。"},
+    {role:"staff",english:"Please buy your ticket at that counter. They accept cash and cards.",japanese:"あちらの窓口で切符を購入してください。現金とカードが使えます。"},
+    {role:"learner",english:"Thanks. Can I put my suitcase under the bus?",japanese:"ありがとう。スーツケースをバスの下に預けられますか。"},
+    {role:"staff",english:"Yes. The driver will help you with your luggage.",japanese:"はい。運転手が荷物を載せるのを手伝います。"},
+    {role:"learner",english:"How long does it usually take to get to the city center?",japanese:"市内中心部まで通常どのくらいかかりますか。"},
+    {role:"staff",english:"It depends on traffic, so please confirm the current travel time at the counter.",japanese:"交通状況によるため、現在の所要時間は窓口で確認してください。"},
+    {role:"learner",english:"All right. I appreciate your help.",japanese:"分かりました。助かりました。"}
+  ], preview:[
+    {english:"I'm going to the Sheraton Nha Trang Hotel.",japanese:"シェラトン・ニャチャン・ホテルへ行きます"},
+    {english:"Does this bus stop near the Sheraton?",japanese:"このバスはシェラトンの近くに停まりますか"},
+    {english:"Which bus should I take?",japanese:"どのバスに乗ればよいですか"},
+    {english:"Where is the bus stop?",japanese:"バス乗り場はどこですか"},
+    {english:"How much is the fare?",japanese:"運賃はいくらですか"},
+    {english:"Can I pay by card?",japanese:"カードで支払えますか"},
+    {english:"Could you tell me when to get off?",japanese:"降りるときに教えてもらえますか"},
+    {english:"Can I put my suitcase under the bus?",japanese:"スーツケースをバスの下に預けられますか"}
+  ], reactions:thanks, vocabulary:[
+    {term:"airport bus",japanese:"空港バス",example:"Where can I catch the airport bus?"},
+    {term:"platform",japanese:"乗り場・ホーム",example:"It leaves from platform three."},
+    {term:"bus stop",japanese:"バス停",example:"Where is the bus stop?"},
+    {term:"get off",japanese:"降りる",example:"Where should I get off?"},
+    {term:"fare",japanese:"運賃",example:"How much is the fare?"},
+    {term:"suitcase",japanese:"スーツケース",example:"I have one suitcase."},
+    {term:"luggage compartment",japanese:"荷物室",example:"Put it in the luggage compartment."},
+    {term:"travel time",japanese:"所要時間",example:"What is the travel time?"}
+  ] },
   { id:"exchange", title:"空港の両替所", icon:"💱", start:"両替カウンターでスタッフが How can I help you? と尋ねるところ", goal:"金額・レート・手数料を確認して両替する", stages:["両替を頼む","レートと手数料を聞く","受取額を確認する"], story:[
     {role:"staff",english:"Hello. How can I help you?",japanese:"こんにちは。ご用件をどうぞ。"},{role:"learner",english:"I'd like to exchange 30,000 yen into dollars.",japanese:"3万円をドルに両替したいです。"},{role:"staff",english:"Today's rate is shown on the screen.",japanese:"本日のレートは画面に表示されています。"},{role:"learner",english:"I see. Is there a commission?",japanese:"なるほど。手数料はありますか。"},{role:"staff",english:"Yes, there is a five-dollar service fee.",japanese:"5ドルの手数料があります。"},{role:"learner",english:"Sorry? How much will I receive?",japanese:"すみません。受取額はいくらですか。"},{role:"staff",english:"You'll receive 185 dollars. May I see your passport?",japanese:"185ドルです。パスポートを拝見できますか。"},{role:"learner",english:"That sounds good. Here you are.",japanese:"それでお願いします。はい、どうぞ。"}], preview:[{english:"I'd like to exchange 30,000 yen.",japanese:"3万円を両替したいです"},{english:"What's today's exchange rate?",japanese:"今日の為替レートはいくらですか"},{english:"Is there a commission?",japanese:"手数料はありますか"},{english:"How much will I receive?",japanese:"受取額はいくらですか"}], reactions:basic, vocabulary:[{term:"exchange rate",japanese:"為替レート",example:"What's the exchange rate?"},{term:"commission",japanese:"手数料",example:"Is there a commission?"},{term:"receive",japanese:"受け取る",example:"How much will I receive?"}] },
   { id:"sim-shop", title:"SIM販売店", icon:"📱", start:"SIM販売カウンターで Are you looking for a SIM card? と声をかけられるところ", goal:"滞在日数と用途を伝え、プランを選ぶ", stages:["SIMを探していると伝える","用途を説明する","プランと料金を確認する"], story:[
