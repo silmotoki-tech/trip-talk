@@ -27,6 +27,8 @@ Trip Talkは、**ChatGPTで戦略会議・台本設計 → Trip Talkで予習・
 - iframe埋め込みは前提にしない
 - 教材はGitHub、個人進捗はFirestoreを正本とする
 
+具体的なM0/M1実装は [M0/M1実装仕様書](m0-m1-implementation-spec.md) を正本とする。
+
 ## M0 — 旧教材を外し、新しい正本構造を作る
 
 ### 目的
