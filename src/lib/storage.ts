@@ -1,29 +1,35 @@
-import { Difficulty, PracticeMode, SessionRecord, UserId } from "./types";
+import type { UserId } from "./types";
 
-const key = (userId: UserId, suffix: string) => `english-mvp:${userId}:${suffix}`;
+const selectedUserKey = "english-mvp:selected-user";
+const listeners = new Set<() => void>();
+
+const isUserId = (value: string | null): value is UserId =>
+  value === "tamoyan" || value === "gonzaemon";
 
 export const storage = {
-  loadDifficulty(userId: UserId, fallback: Difficulty): Difficulty {
-    if (typeof window === "undefined") return fallback;
-    const value = localStorage.getItem(key(userId, "difficulty"));
-    return value ? JSON.parse(value) : fallback;
+  loadSelectedUser(): UserId {
+    if (typeof window === "undefined") return "tamoyan";
+    const value = localStorage.getItem(selectedUserKey);
+    return isUserId(value) ? value : "tamoyan";
   },
-  saveDifficulty(userId: UserId, value: Difficulty) {
-    localStorage.setItem(key(userId, "difficulty"), JSON.stringify(value));
+  saveSelectedUser(userId: UserId) {
+    localStorage.setItem(selectedUserKey, userId);
+    listeners.forEach((listener) => listener());
   },
-  loadPracticeMode(userId: UserId): PracticeMode {
-    if (typeof window === "undefined") return "scripted";
-    return localStorage.getItem(key(userId, "practice-mode")) === "variation" ? "variation" : "scripted";
+  getServerSelectedUser(): UserId {
+    return "tamoyan";
   },
-  savePracticeMode(userId: UserId, value: PracticeMode) {
-    localStorage.setItem(key(userId, "practice-mode"), value);
-  },
-  saveSession(session: SessionRecord) {
-    localStorage.setItem(key(session.userId, "latest-session"), JSON.stringify(session));
-  },
-  loadLatest(userId: UserId): SessionRecord | null {
-    if (typeof window === "undefined") return null;
-    const value = localStorage.getItem(key(userId, "latest-session"));
-    return value ? JSON.parse(value) : null;
+  subscribe(listener: () => void) {
+    listeners.add(listener);
+
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === selectedUserKey) listener();
+    };
+
+    window.addEventListener("storage", handleStorage);
+    return () => {
+      listeners.delete(listener);
+      window.removeEventListener("storage", handleStorage);
+    };
   },
 };
