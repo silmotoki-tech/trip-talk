@@ -110,3 +110,27 @@ footer { text-align: center; padding: 20px 0 45px; font-size: 11px; opacity: .5;
   body { background: #e7e0d4; }
   main { background: var(--paper); box-shadow: 0 0 50px #18362f18; }
 }
+
+button { cursor: pointer; }
+button:disabled, select:disabled { opacity: .5; cursor: not-allowed; }
+button:focus-visible, a:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.primary { width: 100%; min-height: 52px; margin-top: 12px; border: 0; border-radius: 16px; padding: 12px; background: var(--ink); color: white; font-weight: 800; }
+.card .secondary { margin-top: 12px; }
+.notice { padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--mint); font-size: 14px; }
+.detail.stack { padding: 0; gap: 20px; }
+.progress-text { font-size: 13px; margin: 12px 0; }
+.rating { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
+select { font: inherit; min-height: 44px; padding: 8px; background: white; border-radius: 8px; }
+.mode-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mode-buttons button { font-size: 14px; padding: 10px; }
+.mode-buttons [aria-pressed="true"] { background: var(--ink); color: white; }
+.toggle { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.toggle input { width: 22px; height: 22px; }
+.turn.learner, .answer { background: var(--mint); }
+.answer { margin: 12px 0; padding: 12px; border-radius: 12px; }
+.turn p[lang="en"] { font-size: 19px; }
+.translation { font-size: 14px; opacity: .8; }
+.expression { margin-top: 10px; }
+.prompt-label { display: block; margin-top: 16px; }
+textarea { width: 100%; font: inherit; font-size: 16px; padding: 12px; margin-top: 8px; border: 1px solid var(--line); border-radius: 10px; }
+.card, p, h2, h3 { overflow-wrap: anywhere; }

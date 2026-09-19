@@ -1,0 +1,50 @@
+{
+  "id": "MOTOKI999999",
+  "targetUserId": "tamoyan",
+  "scene": "テスト専用",
+  "situation": "UI確認用・正式教材ではありません",
+  "summary": "テストfixture — 公開教材に追加しない",
+  "goal": "練習モードの動作確認",
+  "dialogue": [
+    {
+      "role": "learner",
+      "english": "Opening fixture.",
+      "japanese": "開始用テスト文。"
+    },
+    {
+      "role": "partner",
+      "english": "Question one?",
+      "japanese": "質問1？"
+    },
+    {
+      "role": "learner",
+      "english": "Answer one.",
+      "japanese": "回答1。"
+    },
+    {
+      "role": "partner",
+      "english": "Question two?",
+      "japanese": "質問2？"
+    },
+    {
+      "role": "partner",
+      "english": "Question three?",
+      "japanese": "質問3？"
+    },
+    {
+      "role": "learner",
+      "english": "Answer three.",
+      "japanese": "回答3。"
+    }
+  ],
+  "expressions": [
+    {
+      "english": "Answer one.",
+      "japanese": "回答1。",
+      "functions": [
+        "answer"
+      ],
+      "learningStatus": "new"
+    }
+  ]
+}

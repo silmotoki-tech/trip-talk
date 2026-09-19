@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // MVP: anonymous UIDと利用者IDは結び付けない。強い本人認証ではない。
+    match /progress/{userId}/scripts/{scriptId} {
+      function validPath() {
+        return request.auth != null
+          && userId in ['tamoyan', 'gonzaemon']
+          && scriptId.matches('^(MOTOKI|CHAMI)(0|[1-9][0-9]*)$');
+      }
+      function validData() {
+        let d = request.resource.data;
+        return d.keys().hasAll(['readAloudCount', 'lastReadAt', 'selfRating', 'updatedAt'])
+          && d.keys().hasOnly(['readAloudCount', 'lastReadAt', 'selfRating', 'updatedAt'])
+          && d.readAloudCount is int && d.readAloudCount >= 0 && d.readAloudCount <= 2147483647
+          && (d.lastReadAt == null || (d.lastReadAt is timestamp && d.lastReadAt <= request.time))
+          && ((d.readAloudCount == 0 && d.lastReadAt == null) || (d.readAloudCount > 0 && d.lastReadAt is timestamp))
+          && (d.selfRating == null || (d.selfRating is int && d.selfRating >= 1 && d.selfRating <= 4))
+          && d.updatedAt is timestamp && d.updatedAt == request.time;
+      }
+      allow get: if validPath();
+      allow create: if validPath() && validData()
+        && (request.resource.data.readAloudCount == 0 ||
+          (request.resource.data.readAloudCount == 1 && request.resource.data.lastReadAt == request.time));
+      allow update: if validPath() && validData() && (
+        (request.resource.data.readAloudCount == resource.data.readAloudCount
+          && request.resource.data.lastReadAt == resource.data.lastReadAt) ||
+        (request.resource.data.readAloudCount == resource.data.readAloudCount + 1
+          && request.resource.data.lastReadAt == request.time
+          && request.resource.data.selfRating == resource.data.selfRating));
+      allow list, delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
