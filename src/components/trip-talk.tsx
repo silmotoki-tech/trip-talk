@@ -347,12 +347,10 @@ export function ScriptDetail({
                   {turn.role === "partner" ? "Staff" : "You"}
                 </span>
               )}
-              <div className="log-body">
-                <p className="log-en" lang="en">
-                  {turn.english}
-                </p>
-                {japanese && <p className="log-ja">{turn.japanese}</p>}
-              </div>
+              <p className="log-en" lang="en">
+                {turn.english}
+              </p>
+              {japanese && <p className="log-ja">{turn.japanese}</p>}
             </div>
           ))}
         </div>

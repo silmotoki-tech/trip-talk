@@ -4,6 +4,7 @@
   --orange: #ed6a3a;
   --mint: #dce9df;
   --line: #d7d2c7;
+  --you: #1d4fbf;
 }
 
 * { box-sizing: border-box; }
@@ -135,20 +136,18 @@ select { font: inherit; min-height: 44px; padding: 8px; background: white; borde
   font-weight: 800;
   letter-spacing: .02em;
   line-height: 1.2;
+  color: var(--ink);
   opacity: .55;
 }
-.log-learner .log-speaker { color: var(--orange); opacity: .9; }
-.log-body {
-  border-left: 2px solid var(--line);
-  padding-left: 8px;
-}
-.log-learner .log-body { border-left-color: var(--orange); }
+.log-learner .log-speaker { color: var(--you); opacity: .8; }
 .log-en {
   margin: 0;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.4;
+  color: var(--ink);
 }
+.log-learner .log-en { color: var(--you); }
 .log-ja {
   margin: 2px 0 0;
   font-size: 13px;
