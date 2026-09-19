@@ -1,0 +1,226 @@
+{
+  "id": "MOTOKI0",
+  "targetUserId": "tamoyan",
+  "scene": "Hotel check-in",
+  "situation": "高級ホテルに到着。エントランスでベルスタッフと短くやり取りした後、フロントでチェックイン。予約確認、パスポート、デポジット、館内案内を受け、朝食時間とチェックアウト時間を自分から確認して終了する。",
+  "summary": "ホテル到着からチェックイン完了までの基本的な流れを練習する。定番質問への回答に加えて、軽い雑談、聞き返し、確認、リアクション、自分からの質問を含む。",
+  "goal": "ホテル到着からチェックイン終了まで、短い英語でスムーズに対応する。定番質問に答え、聞き取れないときは聞き返し、自分から必要事項を質問できる。",
+  "dialogue": [
+    {
+      "role": "partner",
+      "english": "Welcome to the Grand Hotel. May I help you with your bags?",
+      "japanese": "ようこそグランドホテルへ。お荷物をお持ちしましょうか？"
+    },
+    {
+      "role": "learner",
+      "english": "Yes, please. Thank you.",
+      "japanese": "はい、お願いします。ありがとうございます。"
+    },
+    {
+      "role": "partner",
+      "english": "Of course. Are you checking in today?",
+      "japanese": "かしこまりました。本日チェックインですか？"
+    },
+    {
+      "role": "learner",
+      "english": "Yes, I am.",
+      "japanese": "はい、そうです。"
+    },
+    {
+      "role": "partner",
+      "english": "Great. The front desk is right over there.",
+      "japanese": "かしこまりました。フロントはすぐあちらです。"
+    },
+    {
+      "role": "learner",
+      "english": "Great, thank you.",
+      "japanese": "ありがとうございます。"
+    },
+    {
+      "role": "partner",
+      "english": "Good afternoon. Welcome to the Grand Hotel. How was your trip?",
+      "japanese": "こんにちは。グランドホテルへようこそ。こちらまでの旅はいかがでしたか？"
+    },
+    {
+      "role": "learner",
+      "english": "It was good, thanks. A little long, though.",
+      "japanese": "よかったです、ありがとう。でも少し長かったです。"
+    },
+    {
+      "role": "partner",
+      "english": "I see. May I have your name, please?",
+      "japanese": "そうでしたか。お名前をいただけますか？"
+    },
+    {
+      "role": "learner",
+      "english": "Sure. Motoki Nyuta.",
+      "japanese": "はい。モトキ・ニュウタです。"
+    },
+    {
+      "role": "partner",
+      "english": "Thank you, Mr. Nyuta. May I see your passport, please?",
+      "japanese": "ありがとうございます、ニュウタ様。パスポートを拝見してもよろしいですか？"
+    },
+    {
+      "role": "learner",
+      "english": "Sure. Here you go.",
+      "japanese": "もちろんです。どうぞ。"
+    },
+    {
+      "role": "partner",
+      "english": "Thank you. You’ll be staying with us for three nights. Is that correct?",
+      "japanese": "ありがとうございます。3泊のご滞在ですね。よろしいでしょうか？"
+    },
+    {
+      "role": "learner",
+      "english": "Yes, that’s right.",
+      "japanese": "はい、その通りです。"
+    },
+    {
+      "role": "partner",
+      "english": "We’ll also need a credit card for the deposit.",
+      "japanese": "デポジットのためにクレジットカードも必要です。"
+    },
+    {
+      "role": "learner",
+      "english": "Sorry, could you say that again?",
+      "japanese": "すみません、もう一度言っていただけますか？"
+    },
+    {
+      "role": "partner",
+      "english": "Of course. We need a credit card for the deposit.",
+      "japanese": "もちろんです。デポジットのためにクレジットカードが必要です。"
+    },
+    {
+      "role": "learner",
+      "english": "Okay, no problem. Here you go.",
+      "japanese": "わかりました。大丈夫です。どうぞ。"
+    },
+    {
+      "role": "partner",
+      "english": "Thank you. Breakfast is served on the second floor.",
+      "japanese": "ありがとうございます。朝食は2階でご用意しています。"
+    },
+    {
+      "role": "learner",
+      "english": "What time does breakfast start?",
+      "japanese": "朝食は何時からですか？"
+    },
+    {
+      "role": "partner",
+      "english": "It starts at 6:30 a.m. The elevators are just around the corner.",
+      "japanese": "朝6時30分からです。エレベーターはすぐ角を曲がったところです。"
+    },
+    {
+      "role": "learner",
+      "english": "Got it. And what time is check-out?",
+      "japanese": "わかりました。それと、チェックアウトは何時ですか？"
+    },
+    {
+      "role": "partner",
+      "english": "Check-out is at 11 a.m. Your room is on the eighth floor. We’ll bring your bags up shortly.",
+      "japanese": "チェックアウトは午前11時です。お部屋は8階です。お荷物はすぐにお部屋までお持ちします。"
+    },
+    {
+      "role": "learner",
+      "english": "Sounds good. Thank you very much.",
+      "japanese": "いいですね。ありがとうございます。"
+    },
+    {
+      "role": "partner",
+      "english": "Here are your room keys. Enjoy your stay.",
+      "japanese": "こちらがお部屋のキーです。ご滞在をお楽しみください。"
+    },
+    {
+      "role": "learner",
+      "english": "Thank you. Have a nice day.",
+      "japanese": "ありがとうございます。よい一日を。"
+    }
+  ],
+  "expressions": [
+    {
+      "english": "Yes, please.",
+      "japanese": "はい、お願いします。",
+      "functions": ["answer", "request"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Yes, I am.",
+      "japanese": "はい、そうです。",
+      "functions": ["answer"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Great, thank you.",
+      "japanese": "ありがとうございます。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "It was good, thanks. A little long, though.",
+      "japanese": "よかったです、ありがとう。でも少し長かったです。",
+      "functions": ["answer", "reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Sure. Motoki Nyuta.",
+      "japanese": "はい。モトキ・ニュウタです。",
+      "functions": ["answer"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Sure. Here you go.",
+      "japanese": "もちろんです。どうぞ。",
+      "functions": ["answer", "reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Yes, that’s right.",
+      "japanese": "はい、その通りです。",
+      "functions": ["confirmation"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Sorry, could you say that again?",
+      "japanese": "すみません、もう一度言っていただけますか？",
+      "functions": ["clarification"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Okay, no problem. Here you go.",
+      "japanese": "わかりました。大丈夫です。どうぞ。",
+      "functions": ["reaction", "answer"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "What time does breakfast start?",
+      "japanese": "朝食は何時からですか？",
+      "functions": ["question"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Got it.",
+      "japanese": "わかりました。",
+      "functions": ["reaction", "confirmation"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "And what time is check-out?",
+      "japanese": "それと、チェックアウトは何時ですか？",
+      "functions": ["question"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Sounds good. Thank you very much.",
+      "japanese": "いいですね。ありがとうございます。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Thank you. Have a nice day.",
+      "japanese": "ありがとうございます。よい一日を。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    }
+  ]
+}
