@@ -10,6 +10,18 @@ Trip Talkは、**ChatGPTで戦略会議・台本設計 → Trip Talkで予習・
 
 アプリ内Realtime API＋Firebaseを中心に据える旧ロードマップは現行方針ではない。再開する場合は別途明示的な意思決定が必要。
 
+## 開発ツール運用
+
+通常の開発フローは次を基本とする。
+
+1. ChatGPTで要件整理・設計・仕様確定
+2. ChatGPTがCursor向けの具体的な実装指示を作成
+3. Cursorでローカル実装・検索・修正・lint/build
+4. Firebase Console等のGUI設定はユーザーが手順に沿って実施
+5. GitHubへcommit/pushし、必要に応じてChatGPTが差分をレビュー
+
+Codex/Workは、複数ファイルにまたがる大規模移行、一括変更、ローカル操作を直接任せたい場合に限定して使う。
+
 ## 再開手順
 
 1. `AGENTS.md`、`CLAUDE.md`、`docs/handover/README.md` を確認する。
