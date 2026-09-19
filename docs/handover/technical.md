@@ -18,6 +18,17 @@
 - 読み上げ指示書には「ユーザーがLive内で『もう一回』と言ったら、同じ台本を同じルールで最初から最後まで再読する」を含める。反復時の再生成は不要。
 - Liveの詳細失敗ログや会話ログをMVPでFirestoreへ保存しない。
 
+## 2026-09-19 開発運用方針
+
+日常の実装は **Cursor中心** とする。
+
+- ChatGPT：設計、仕様整理、実装指示書、レビュー、GitHub上の設計文書更新
+- Cursor：ローカルコード編集、検索、差分修正、lint/build、commit/push
+- ユーザー：Firebase ConsoleなどGUI主体の設定作業
+- Codex/Work：大規模移行、複数ファイル一括変更、ローカル操作を直接任せたい場合のみ
+
+この方針は機能仕様ではなく開発運用上の決定であり、Trip Talkのアーキテクチャ自体は変更しない。
+
 ### 現在地（2026-09-08確認・歴史的コード確認）
 - 文書追加前のGitHub main：`6a5a8c886693dff5cb84d9e2765518d0067d7061`（Shorten ChatGPT project instructions）。GitHubから直接取得した。
 - ソースtree：`bb4a295df178b387a82b9dbd38b763ea5ce6ff8d`。読取調査に使った2026-09-07バックアップcheckoutのHEAD・treeが一致し、未コミット差分なしを確認した。これはバックアップcheckoutであり、全端末の正本や未push作業まで調査した意味ではない。
