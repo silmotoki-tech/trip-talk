@@ -241,6 +241,8 @@ export function ScriptDetail({
   const lock = useRef(false);
   const questions = practiceQuestions(script);
   const current = questions[index];
+  const firstPartner = script.dialogue.findIndex((t) => t.role === "partner");
+  const firstLearner = script.dialogue.findIndex((t) => t.role === "learner");
   const canSave = firebaseConfigured && entry?.state === "ready" && !saving;
   async function save(
     change: { kind: "read" } | { kind: "rating"; rating: SelfRating },
@@ -340,13 +342,17 @@ export function ScriptDetail({
         <div className="dialogue-log">
           {script.dialogue.map((turn, i) => (
             <div className={`log-turn log-${turn.role}`} key={i}>
-              <span className="log-speaker">
-                {turn.role === "partner" ? "Staff" : "You"}
-              </span>
-              <p className="log-en" lang="en">
-                {turn.english}
-              </p>
-              {japanese && <p className="log-ja">{turn.japanese}</p>}
+              {i === (turn.role === "partner" ? firstPartner : firstLearner) && (
+                <span className="log-speaker">
+                  {turn.role === "partner" ? "Staff" : "You"}
+                </span>
+              )}
+              <div className="log-body">
+                <p className="log-en" lang="en">
+                  {turn.english}
+                </p>
+                {japanese && <p className="log-ja">{turn.japanese}</p>}
+              </div>
             </div>
           ))}
         </div>
