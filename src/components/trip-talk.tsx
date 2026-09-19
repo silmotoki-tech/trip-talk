@@ -337,13 +337,17 @@ export function ScriptDetail({
         日本語を表示
       </label>
       {mode === "full" ? (
-        <div className="script-list">
+        <div className="dialogue-log">
           {script.dialogue.map((turn, i) => (
-            <article className={`card turn ${turn.role}`} key={i}>
-              <small>{turn.role === "partner" ? "相手" : "自分"}</small>
-              <p lang="en">{turn.english}</p>
-              {japanese && <p className="translation">{turn.japanese}</p>}
-            </article>
+            <div className={`log-turn log-${turn.role}`} key={i}>
+              <span className="log-speaker">
+                {turn.role === "partner" ? "Staff" : "You"}
+              </span>
+              <p className="log-en" lang="en">
+                {turn.english}
+              </p>
+              {japanese && <p className="log-ja">{turn.japanese}</p>}
+            </div>
           ))}
         </div>
       ) : (
