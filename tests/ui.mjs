@@ -78,7 +78,7 @@ export default function TestPage() { return <TripTalk scripts={[parseScript(samp
       .getByText("ちゃみとして練習します。", { exact: false })
       .waitFor();
     await page.goto("http://127.0.0.1:3011/m1-test/");
-    await page.getByRole("button", { name: "MOTOKI999999を開く" }).click();
+    await page.getByRole("button", { name: "台本を開く" }).click();
     assert.equal(
       await page.getByRole("button", { name: "音読 +1" }).isDisabled(),
       true,
@@ -126,7 +126,7 @@ export default function TestPage() { return <TripTalk scripts={[parseScript(samp
       );
     }
     await page.getByRole("button", { name: /タモやん/ }).click();
-    await page.getByRole("button", { name: "MOTOKI999999を開く" }).waitFor();
+    await page.getByRole("button", { name: "台本を開く" }).waitFor();
     assert.deepEqual(errors, []);
     console.log(
       "PASS: empty state, user switch, full text, Japanese toggle, question/answer/next/end, prompt/copy, disabled persistence, 320/390px overflow, no page errors",

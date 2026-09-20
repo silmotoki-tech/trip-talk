@@ -11,6 +11,15 @@ import type { LearningScript, UserId } from "@/lib/types";
 
 type Entry =
   { state: "ready"; data: ScriptProgress | null } | { state: "error" };
+function groupScriptsByScene(scripts: LearningScript[]) {
+  const groups: { scene: string; scripts: LearningScript[] }[] = [];
+  for (const script of scripts) {
+    const group = groups.find((item) => item.scene === script.scene);
+    if (group) group.scripts.push(script);
+    else groups.push({ scene: script.scene, scripts: [script] });
+  }
+  return groups;
+}
 const date = (p: ScriptProgress | null | undefined) =>
   p?.lastReadAt
     ? p.lastReadAt.toDate().toLocaleString("ja-JP")
@@ -68,6 +77,7 @@ function Workspace({
   const catalogScripts = scripts.filter(
     (s) => s.targetUserId === catalogUserId,
   );
+  const sceneGroups = groupScriptsByScene(catalogScripts);
   useEffect(() => {
     if (!firebaseConfigured) return;
     let active = true;
@@ -210,27 +220,36 @@ function Workspace({
                 </div>
               </article>
             ) : (
-              <div className="script-list">
-                {catalogScripts.map((s) => (
-                  <article className="card script-card" key={s.id}>
-                    <div className="script-heading">
-                      <b>{s.id}</b>
-                      <span>
-                        {USERS.find((u) => u.id === s.targetUserId)?.name}向け
-                      </span>
+              <div className="script-groups">
+                {sceneGroups.map((group) => (
+                  <section className="scene-group" key={group.scene}>
+                    <h3 className="scene-heading">
+                      <span>{group.scene}</span>
+                      <span className="scene-count">{group.scripts.length}本</span>
+                    </h3>
+                    <div className="script-list">
+                      {group.scripts.map((s) => (
+                        <article className="card script-card" key={s.id}>
+                          <div className="script-heading">
+                            <span>
+                              {USERS.find((u) => u.id === s.targetUserId)?.name}向け
+                            </span>
+                          </div>
+                          <p className="script-scene">
+                            {s.scene} ＞ {s.situation}
+                          </p>
+                          <h3>{s.summary}</h3>
+                          <ProgressText entry={entries[s.id]} />
+                          <button
+                            className="secondary"
+                            onClick={() => setSelected(s.id)}
+                          >
+                            台本を開く
+                          </button>
+                        </article>
+                      ))}
                     </div>
-                    <p className="script-scene">
-                      {s.scene} ＞ {s.situation}
-                    </p>
-                    <h3>{s.summary}</h3>
-                    <ProgressText entry={entries[s.id]} />
-                    <button
-                      className="secondary"
-                      onClick={() => setSelected(s.id)}
-                    >
-                      {s.id}を開く
-                    </button>
-                  </article>
+                  </section>
                 ))}
               </div>
             )}
@@ -303,7 +322,6 @@ export function ScriptDetail({
   return (
     <section className="detail stack">
       <div>
-        <p className="eyebrow">{script.id}</p>
         <h2>{script.summary}</h2>
         <p>
           {script.scene} ＞ {script.situation}

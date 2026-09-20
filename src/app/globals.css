@@ -91,11 +91,21 @@ p { margin: 4px 0; line-height: 1.65; }
 .empty-state p { font-size: 13px; opacity: .7; }
 .empty-state h3 { overflow-wrap: break-word; }
 
+.script-groups { display: grid; gap: 24px; }
+.scene-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+.scene-heading > span:first-child { min-width: 0; overflow-wrap: break-word; }
+.scene-count { flex-shrink: 0; font-size: 13px; font-weight: 800; opacity: .55; }
 .script-list { display: grid; gap: 12px; }
-.script-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.script-heading > b { font-size: 18px; }
+.script-heading { display: flex; justify-content: flex-end; align-items: center; gap: 12px; }
 .script-heading > span { border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; font-size: 10px; }
-.script-scene { margin-top: 14px; font-size: 12px; font-weight: 800; color: var(--orange); }
+.script-scene { margin-top: 8px; font-size: 12px; font-weight: 800; color: var(--orange); }
 
 .chatgpt-card { display: grid; gap: 18px; }
 .chatgpt-card p:last-child { font-size: 13px; opacity: .72; }
