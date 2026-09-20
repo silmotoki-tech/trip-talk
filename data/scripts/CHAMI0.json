@@ -1,0 +1,192 @@
+{
+  "id": "CHAMI0",
+  "targetUserId": "gonzaemon",
+  "scene": "空港の両替所",
+  "situation": "タイ到着後、空港内の両替カウンターで日本円10,000円をタイバーツに両替する。スタッフから軽く呼び込まれて会話が始まる。",
+  "summary": "空港の両替所で、日本円をタイバーツに両替する基本会話を練習する。金額を伝え、手数料を確認し、聞き返し・確認・相づち・自発質問まで含めて、実際の旅行で使える短いやり取りを身につける。",
+  "goal": "両替したいことと金額を伝え、手数料を確認し、聞き返しや確認への返答をしながら最後までやり取りできる。",
+  "dialogue": [
+    {
+      "role": "partner",
+      "english": "Hi! Exchange money?",
+      "japanese": "こんにちは！両替ですか？"
+    },
+    {
+      "role": "learner",
+      "english": "Hi. Yes, please.",
+      "japanese": "こんにちは。はい、お願いします。"
+    },
+    {
+      "role": "partner",
+      "english": "Japanese yen?",
+      "japanese": "日本円ですか？"
+    },
+    {
+      "role": "learner",
+      "english": "Yes. I'd like to exchange some yen.",
+      "japanese": "はい。日本円を両替したいです。"
+    },
+    {
+      "role": "partner",
+      "english": "Sure. How much would you like to exchange?",
+      "japanese": "もちろんです。いくら両替しますか？"
+    },
+    {
+      "role": "learner",
+      "english": "Ten thousand yen, please.",
+      "japanese": "1万円お願いします。"
+    },
+    {
+      "role": "partner",
+      "english": "Ten thousand yen?",
+      "japanese": "1万円ですね？"
+    },
+    {
+      "role": "learner",
+      "english": "Yes, that's right.",
+      "japanese": "はい、そのとおりです。"
+    },
+    {
+      "role": "partner",
+      "english": "Okay. Just a moment, please.",
+      "japanese": "わかりました。少々お待ちください。"
+    },
+    {
+      "role": "learner",
+      "english": "Okay.",
+      "japanese": "わかりました。"
+    },
+    {
+      "role": "partner",
+      "english": "Sorry?",
+      "japanese": "え？"
+    },
+    {
+      "role": "learner",
+      "english": "Is there a fee?",
+      "japanese": "手数料はありますか？"
+    },
+    {
+      "role": "partner",
+      "english": "No, no fee.",
+      "japanese": "いいえ、手数料はありません。"
+    },
+    {
+      "role": "learner",
+      "english": "Oh, okay. Thank you.",
+      "japanese": "あ、わかりました。ありがとうございます。"
+    },
+    {
+      "role": "partner",
+      "english": "Here you are. Please check the amount.",
+      "japanese": "どうぞ。金額を確認してください。"
+    },
+    {
+      "role": "learner",
+      "english": "Sorry?",
+      "japanese": "すみません、もう一度お願いします。"
+    },
+    {
+      "role": "partner",
+      "english": "Please check the amount.",
+      "japanese": "金額を確認してください。"
+    },
+    {
+      "role": "learner",
+      "english": "Okay. Do I need to sign here?",
+      "japanese": "わかりました。ここにサインする必要がありますか？"
+    },
+    {
+      "role": "partner",
+      "english": "Yes, please. Right here.",
+      "japanese": "はい、お願いします。ここです。"
+    },
+    {
+      "role": "learner",
+      "english": "Okay.",
+      "japanese": "わかりました。"
+    },
+    {
+      "role": "partner",
+      "english": "All done. Here is your Thai baht.",
+      "japanese": "終わりました。こちらがタイバーツです。"
+    },
+    {
+      "role": "learner",
+      "english": "Great. Thank you.",
+      "japanese": "よかったです。ありがとうございます。"
+    },
+    {
+      "role": "partner",
+      "english": "You're welcome. Have a nice day!",
+      "japanese": "どういたしまして。良い一日を！"
+    },
+    {
+      "role": "learner",
+      "english": "You too.",
+      "japanese": "あなたも。"
+    }
+  ],
+  "expressions": [
+    {
+      "english": "I'd like to exchange some yen.",
+      "japanese": "日本円を両替したいです。",
+      "functions": ["request"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Ten thousand yen, please.",
+      "japanese": "1万円お願いします。",
+      "functions": ["answer"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Yes, that's right.",
+      "japanese": "はい、そのとおりです。",
+      "functions": ["confirmation"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Is there a fee?",
+      "japanese": "手数料はありますか？",
+      "functions": ["question"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Sorry?",
+      "japanese": "すみません、もう一度お願いします。",
+      "functions": ["clarification"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Do I need to sign here?",
+      "japanese": "ここにサインする必要がありますか？",
+      "functions": ["question", "confirmation"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Okay.",
+      "japanese": "わかりました。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Oh, okay. Thank you.",
+      "japanese": "あ、わかりました。ありがとうございます。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "Great. Thank you.",
+      "japanese": "よかったです。ありがとうございます。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    },
+    {
+      "english": "You too.",
+      "japanese": "あなたも。",
+      "functions": ["reaction"],
+      "learningStatus": "new"
+    }
+  ]
+}
