@@ -75,6 +75,7 @@ Trip Talkでは、次の2つは**完全に別の概念**として扱う。
 | UI・保存・プロンプト・ビルド・公開構成 | [現在の実装・技術構成](technical.md) |
 | 意思決定の履歴 | [意思決定・開発履歴](decisions.md) |
 | Cursorでの実装手順・指示の出し方 | [Cursor実装運用ルール](cursor-workflow.md) |
+| 将来の棒人間アニメ・視覚シーン練習 | [視覚シーン練習 / アニメーションモード構想](visual-scene-mode.md) |
 | 障害調査・既存実装の失敗ログ | [失敗・改善ログ](failures.md) |
 | 過去仕様・旧構想の確認 | [設計理念・仕様](product-and-spec.md) |
 
