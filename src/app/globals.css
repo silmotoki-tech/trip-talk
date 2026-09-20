@@ -73,10 +73,23 @@ p { margin: 4px 0; line-height: 1.65; }
 }
 
 .section-note { margin-bottom: 14px; font-size: 13px; opacity: .7; }
+.catalog-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0 0 16px; }
+.catalog-tabs button {
+  min-width: 0;
+  min-height: 44px;
+  border: 1px solid var(--ink);
+  border-radius: 18px;
+  background: transparent;
+  padding: 10px 8px;
+  font-size: 14px;
+  font-weight: 900;
+}
+.catalog-tabs [aria-pressed="true"] { background: var(--ink); color: white; }
 .card { border: 1px solid var(--line); border-radius: 22px; background: #fffdf7; padding: 20px; }
 .empty-state { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: center; }
 .empty-state > span { font-size: 32px; }
 .empty-state p { font-size: 13px; opacity: .7; }
+.empty-state h3 { overflow-wrap: break-word; }
 
 .script-list { display: grid; gap: 12px; }
 .script-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }

@@ -35,13 +35,27 @@ export default function TripTalk({ scripts }: { scripts: LearningScript[] }) {
     storage.loadSelectedUser,
     storage.getServerSelectedUser,
   );
-  return <Workspace key={userId} userId={userId} scripts={scripts} />;
+  const catalogUserId = useSyncExternalStore(
+    storage.subscribeScriptCatalog,
+    storage.loadScriptCatalog,
+    storage.getServerScriptCatalog,
+  );
+  return (
+    <Workspace
+      key={userId}
+      userId={userId}
+      catalogUserId={catalogUserId}
+      scripts={scripts}
+    />
+  );
 }
 function Workspace({
   userId,
+  catalogUserId,
   scripts,
 }: {
   userId: UserId;
+  catalogUserId: UserId;
   scripts: LearningScript[];
 }) {
   const [selected, setSelected] = useState<string | null>(null);
@@ -50,6 +64,10 @@ function Workspace({
   const [attempt, setAttempt] = useState(0);
   const script = scripts.find((s) => s.id === selected);
   const user = USERS.find((u) => u.id === userId)!;
+  const catalogUser = USERS.find((u) => u.id === catalogUserId)!;
+  const catalogScripts = scripts.filter(
+    (s) => s.targetUserId === catalogUserId,
+  );
   useEffect(() => {
     if (!firebaseConfigured) return;
     let active = true;
@@ -162,8 +180,20 @@ function Workspace({
             <h2 id="script-list-title">台本一覧</h2>
             <p className="section-note">
               {user.name}
-              として練習します。どちらの利用者もすべての台本を使えます。
+              として練習します。下の切替は一覧の表示対象だけを変えます。
             </p>
+            <div className="catalog-tabs" aria-label="表示する教材">
+              {USERS.map((item) => (
+                <button
+                  key={item.id}
+                  type="button"
+                  aria-pressed={catalogUserId === item.id}
+                  onClick={() => storage.saveScriptCatalog(item.id)}
+                >
+                  {item.name}向け
+                </button>
+              ))}
+            </div>
             {!scripts.length ? (
               <article className="card empty-state">
                 <span aria-hidden="true">📖</span>
@@ -172,9 +202,16 @@ function Workspace({
                   <p>最初の台本が確定すると、ここに追加されます。</p>
                 </div>
               </article>
+            ) : !catalogScripts.length ? (
+              <article className="card empty-state">
+                <span aria-hidden="true">📖</span>
+                <div>
+                  <h3>{catalogUser.name}向けの台本はまだありません</h3>
+                </div>
+              </article>
             ) : (
               <div className="script-list">
-                {scripts.map((s) => (
+                {catalogScripts.map((s) => (
                   <article className="card script-card" key={s.id}>
                     <div className="script-heading">
                       <b>{s.id}</b>
