@@ -159,6 +159,35 @@ select { font: inherit; min-height: 44px; padding: 8px; background: white; borde
   max-height: 240px;
   display: block;
 }
+.visual-staff-arm {
+  transform-box: view-box;
+  transform-origin: 200px 116px;
+  animation: visual-staff-point 1.6s infinite;
+}
+@keyframes visual-staff-point {
+  0%, 22% { transform: rotate(-8deg); }
+  23%, 72% { transform: rotate(32deg); }
+  73%, 100% { transform: rotate(-8deg); }
+}
+.visual-suitcase {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+.visual-scene-receiving .visual-staff-arm {
+  animation: visual-staff-take 1.1s forwards;
+}
+.visual-scene-receiving .visual-suitcase {
+  animation: visual-bag-take 1.1s forwards;
+}
+@keyframes visual-staff-take {
+  0%, 20% { transform: rotate(32deg); }
+  21%, 100% { transform: rotate(42deg); }
+}
+@keyframes visual-bag-take {
+  0%, 20% { transform: translate(0, 0); }
+  21%, 55% { transform: translate(-34px, -8px); }
+  56%, 100% { transform: translate(-68px, -16px); }
+}
 .mode-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .mode-buttons button { font-size: 14px; padding: 10px; }
 .mode-buttons [aria-pressed="true"] { background: var(--ink); color: white; }

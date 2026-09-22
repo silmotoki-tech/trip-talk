@@ -277,10 +277,14 @@ function Workspace({
     </main>
   );
 }
-function HotelEntranceScene() {
+function HotelEntranceScene({ receiving }: { receiving: boolean }) {
   return (
     <svg
-      className="visual-scene-svg"
+      className={
+        receiving
+          ? "visual-scene-svg visual-scene-receiving"
+          : "visual-scene-svg"
+      }
       viewBox="0 0 320 200"
       role="img"
       aria-label="ホテル入口でベルスタッフが荷物を案内する"
@@ -339,9 +343,17 @@ function HotelEntranceScene() {
         <circle cx="200" cy="92" r="12" fill="#fffdf7" />
         <line x1="200" y1="104" x2="200" y2="142" />
         <line x1="200" y1="116" x2="182" y2="132" />
-        <line x1="200" y1="116" x2="220" y2="110" />
         <line x1="200" y1="142" x2="188" y2="172" />
         <line x1="200" y1="142" x2="214" y2="172" />
+      </g>
+      <g
+        className="visual-staff-arm"
+        fill="none"
+        stroke="#18362f"
+        strokeWidth="3"
+        strokeLinecap="round"
+      >
+        <line x1="200" y1="116" x2="224" y2="116" />
       </g>
       <rect x="206" y="114" width="16" height="9" rx="1" fill="#ed6a3a" />
       <g fill="none" stroke="#1d4fbf" strokeWidth="3" strokeLinecap="round">
@@ -352,14 +364,16 @@ function HotelEntranceScene() {
         <line x1="268" y1="148" x2="256" y2="176" />
         <line x1="268" y1="148" x2="280" y2="176" />
       </g>
-      <rect x="286" y="148" width="22" height="26" rx="2" fill="#1d4fbf" />
-      <path
-        d="M292 148 V140 H302 V148"
-        fill="none"
-        stroke="#1d4fbf"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
+      <g className="visual-suitcase">
+        <rect x="286" y="148" width="22" height="26" rx="2" fill="#1d4fbf" />
+        <path
+          d="M292 148 V140 H302 V148"
+          fill="none"
+          stroke="#1d4fbf"
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+      </g>
     </svg>
   );
 }
@@ -425,7 +439,7 @@ export function ScriptDetail({
         </div>
         <div className="card visual-scene-stage">
           {visualIndex === 0 ? (
-            <HotelEntranceScene />
+            <HotelEntranceScene receiving={showVisualAnswer} />
           ) : (
             <p>ここに視覚シーンが表示されます</p>
           )}
