@@ -277,6 +277,92 @@ function Workspace({
     </main>
   );
 }
+function HotelEntranceScene() {
+  return (
+    <svg
+      className="visual-scene-svg"
+      viewBox="0 0 320 200"
+      role="img"
+      aria-label="ホテル入口でベルスタッフが荷物を案内する"
+    >
+      <rect width="320" height="200" fill="#eef3ee" />
+      <rect y="148" width="320" height="52" fill="#d7d2c7" />
+      <rect
+        x="18"
+        y="28"
+        width="150"
+        height="122"
+        fill="#fffdf7"
+        stroke="#18362f"
+        strokeWidth="3"
+      />
+      <rect
+        x="28"
+        y="40"
+        width="36"
+        height="28"
+        fill="#dce9df"
+        stroke="#18362f"
+        strokeWidth="2"
+      />
+      <rect
+        x="78"
+        y="40"
+        width="36"
+        height="28"
+        fill="#dce9df"
+        stroke="#18362f"
+        strokeWidth="2"
+      />
+      <rect
+        x="128"
+        y="40"
+        width="28"
+        height="28"
+        fill="#dce9df"
+        stroke="#18362f"
+        strokeWidth="2"
+      />
+      <rect x="68" y="88" width="50" height="62" fill="#18362f" />
+      <rect x="54" y="78" width="78" height="12" fill="#ed6a3a" />
+      <text
+        x="93"
+        y="22"
+        textAnchor="middle"
+        fontSize="11"
+        fontWeight="800"
+        fill="#18362f"
+      >
+        HOTEL
+      </text>
+      <g fill="none" stroke="#18362f" strokeWidth="3" strokeLinecap="round">
+        <circle cx="200" cy="92" r="12" fill="#fffdf7" />
+        <line x1="200" y1="104" x2="200" y2="142" />
+        <line x1="200" y1="116" x2="182" y2="132" />
+        <line x1="200" y1="116" x2="220" y2="110" />
+        <line x1="200" y1="142" x2="188" y2="172" />
+        <line x1="200" y1="142" x2="214" y2="172" />
+      </g>
+      <rect x="206" y="114" width="16" height="9" rx="1" fill="#ed6a3a" />
+      <g fill="none" stroke="#1d4fbf" strokeWidth="3" strokeLinecap="round">
+        <circle cx="268" cy="100" r="12" fill="#fffdf7" />
+        <line x1="268" y1="112" x2="268" y2="148" />
+        <line x1="268" y1="124" x2="254" y2="140" />
+        <line x1="268" y1="124" x2="280" y2="140" />
+        <line x1="268" y1="148" x2="256" y2="176" />
+        <line x1="268" y1="148" x2="280" y2="176" />
+      </g>
+      <rect x="286" y="148" width="22" height="26" rx="2" fill="#1d4fbf" />
+      <path
+        d="M292 148 V140 H302 V148"
+        fill="none"
+        stroke="#1d4fbf"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 export function ScriptDetail({
   script,
   userId,
@@ -286,10 +372,12 @@ export function ScriptDetail({
   userId: UserId;
   entry?: Entry;
 }) {
-  const [mode, setMode] = useState<"full" | "questions">("full");
+  const [mode, setMode] = useState<"full" | "questions" | "visual">("full");
   const [japanese, setJapanese] = useState(false);
   const [index, setIndex] = useState(0);
   const [answer, setAnswer] = useState(false);
+  const [showVisualAnswer, setShowVisualAnswer] = useState(false);
+  const [visualIndex, setVisualIndex] = useState(0);
   const [prompt, setPrompt] = useState("");
   const [copyStatus, setCopyStatus] = useState("");
   const [saving, setSaving] = useState(false);
@@ -318,6 +406,70 @@ export function ScriptDetail({
       lock.current = false;
       setSaving(false);
     }
+  }
+  if (mode === "visual") {
+    const visualPairs = script.dialogue.flatMap((turn, i) => {
+      const next = script.dialogue[i + 1];
+      return turn.role === "partner" && next?.role === "learner"
+        ? [{ partner: turn, learner: next }]
+        : [];
+    });
+    const visualPair = visualPairs[visualIndex];
+    return (
+      <section className="detail stack" aria-labelledby="visual-practice-title">
+        <div>
+          <h2 id="visual-practice-title">視覚シーン練習</h2>
+          <p className="section-note">
+            場面を見ながら、自分の返答を声に出す練習です。
+          </p>
+        </div>
+        <div className="card visual-scene-stage">
+          {visualIndex === 0 ? (
+            <HotelEntranceScene />
+          ) : (
+            <p>ここに視覚シーンが表示されます</p>
+          )}
+        </div>
+        {visualPair && (
+          <p className="log-en" lang="en">
+            {visualPair.partner.english}
+          </p>
+        )}
+        {showVisualAnswer && visualPair?.learner && (
+          <p className="log-en" lang="en">
+            {visualPair.learner.english}
+          </p>
+        )}
+        {visualPair?.learner && (
+          <button
+            className="secondary"
+            type="button"
+            onClick={() => setShowVisualAnswer(true)}
+          >
+            答えを見る
+          </button>
+        )}
+        {visualIndex < visualPairs.length - 1 && (
+          <button
+            className="primary"
+            type="button"
+            onClick={() => {
+              setShowVisualAnswer(false);
+              setVisualIndex((i) => i + 1);
+            }}
+          >
+            次へ
+          </button>
+        )}
+        <button
+          className="secondary"
+          type="button"
+          onClick={() => setMode("full")}
+        >
+          台本詳細に戻る
+        </button>
+      </section>
+    );
   }
   return (
     <section className="detail stack">
@@ -384,6 +536,19 @@ export function ScriptDetail({
         >
           質問だけで練習
         </button>
+        {script.id === "MOTOKI0" && (
+          <button
+            className="secondary"
+            aria-pressed={false}
+            onClick={() => {
+              setShowVisualAnswer(false);
+              setVisualIndex(0);
+              setMode("visual");
+            }}
+          >
+            視覚シーンで練習
+          </button>
+        )}
       </div>
       <label className="toggle">
         <input
