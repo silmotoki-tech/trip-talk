@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 # Trip Talk Cursor work rules
 
-For routine development, this repository is worked on primarily through Cursor. Keep tasks small and explicit.
+For routine development, this repository is worked on primarily through Cursor/Grok. Keep tasks small and explicit. Do not advance several implementation stages at once; use one narrow task at a time so failures and unintended changes are easy to isolate.
 
 Before editing:
 - Confirm this is `silmotoki-tech/trip-talk`.
